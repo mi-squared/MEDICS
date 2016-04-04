@@ -7,6 +7,6 @@ Users may add records manually, or import them from files supplied by the insura
 
 Users will export local records to an outgoing directory, which will render the records unavailable to the local user by deleting the local copy, and storing a copy encrypted using a remote server’s public encryption key in an outgoing directory.
 
-Written in Java using SWING by Aron Racho for Medical Information Integration, LLC
+Written in Java using SWING by Aron Racho (rachoac) for Medical Information Integration, LLC
 Released as Open Source in 2016
 
