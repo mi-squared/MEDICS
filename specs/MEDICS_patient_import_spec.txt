@@ -1,0 +1,52 @@
+Patient file import specs
+1) Standard TAB delimted text file, one record per line, tab character separates fields
+2) Preferred file name should be INSURANCEID_YYYYMMDD.csv, where INSURACEID is the source (Wellcare/Bravo/etc)
+3) Contents: 
+   primary-care-provider-id
+   primary-care-provider-lname
+   primary-care-provider-fname
+   patient-insurance-id : patient is insured by..  ie: Wellcare, Bravo, etc...
+   patient-insured-id
+   patient-ssn
+   patient-lname
+   patient-mname
+   patient-fname
+   patient-dob : must be formatted MM-DD-YYYY
+   patient-sex
+   patient-street1
+   patient-street2
+   patient-city
+   patient-state
+   patient-zip
+   patient-primary-phone : formatted AAAPPPNNNN
+   patient-effective-date : must be formatted MM-DD-YYYY
+   patient-termination-date : must be formatted MM-DD-YYYY
+
+ 4) Data need to be posted on a secure site for download monthly or sent to the npss-dropbox@tbt.org
+    encrypted with the following public key:
+    
+-----BEGIN PGP PUBLIC KEY BLOCK-----
+Version: GnuPG v1.4.6 (MingW32)
+
+mQGiBEh+6hoRBACBXD6zjrdYeeaYUr4XyHtAPTm7cxRSGpQYWoiIrOgxuxVf8bxa
+Dcr5C32mFSGjp2gv8fB7+NKrXjtNPXd549xo+/BXnHSD5Vo/2ftOUCm5jP4Ooh2Z
+czeO9hu83GwY72G7VSBUUpZN/zNeLv+o30Vb72gUS/hV7v/anp/wXcfjgwCgnPJQ
+NEO8mz02dew4nvC3A3DtvcED/3Gk23IZUlpruaFpGL7T2+XAq+9n2Idf5uJCv+Z9
+h0WDEO61B7KeidhJsvxShBaEm9TX2mTq/p5x7cU3N21FjdQUOFHqErgOpCTUOKUl
+0VuGBtO08D2cC8ccjZM784YJ3IOICNvKDYqQ3j74Fwkk9NbeVlHFXYoPXLg63GPv
+JJdZA/0ctUzqxYuX1sYAbJIuUgZq/yEuSIaPu35gZFpBxJgk3RJI/xkPgQXWugVX
+xuzGDq8KWCU1PfRZG9rLDjCCNZI20dA099TxEOnb4RDJpxtqpllS8skKK8KbWuPi
+gfCaTUDNXQsHevqiIQIUtPNqHbkYT2FfkZJp/L5u4UjnoqCYcbQ2bnBzczA4IChN
+RURJQ1MgbG9jYWwgdXNlcikgPG1lZGljc0B3d3cubWktc3F1YXJlZC5jb20+iGAE
+ExECACAFAkh+6hoCGyMGCwkIBwMCBBUCCAMEFgIDAQIeAQIXgAAKCRAIpSAZifym
+NBqTAJ9B/zTbGvCRJe2iURrbJmYfKso+uwCcC/00hy9nGQUdu38gPQgcw3IWK+65
+AQ0ESH7qGxAEAIqDld7wVWL5iEibOTKGRxRW1KFBsV0TVsET4BkBdl36cz8Wuo5P
+79CfEW269QCqLYBGRDgnAvZW7OG/yJq1SRu803FD2GRD7cbv6AYJ56ch03FjXZo3
+7u/xxzhgPBpqWnW8+Nax1gTbZalWj4MevVE+HqURL2sMECSru3Hc4BUHAAMFA/9V
+4hb4UXwmXw0x82YQc/XnhZiuhqQ+g+EW1VVeThrROTnlhTBSVsOnp0uoqK9tYwAW
+9gyecGwjgLuSX6KvMdmekWRBojDAUaa3UfpQO4GHm/9BAcf/O9REWSRU4Tsa6Tol
+2JSUqyU9/hVLRApQzD8YnX8b5UHuWIUR+UwqQMRVgIhJBBgRAgAJBQJIfuobAhsM
+AAoJEAilIBmJ/KY0kwwAn2rTyYkCs5nqTHGvbAiR6As8bwobAJ9jJQ0seJ7J4sMw
+MoMJNFX+R/cR5A==
+=MWjK
+-----END PGP PUBLIC KEY BLOCK-----

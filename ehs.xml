@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<project name="ehs" default="all">
+  
+  
+  <property file="ehs.properties"/>
+  <!-- Uncomment the following property if no tests compilation is needed -->
+  <!-- 
+  <property name="skip.tests" value="true"/>
+   -->
+  
+  <!-- Compiler options -->
+  
+  <property name="compiler.debug" value="on"/>
+  <property name="compiler.generate.no.warnings" value="off"/>
+  <property name="compiler.args" value=""/>
+  <property name="compiler.max.memory" value="128m"/>
+  <patternset id="ignored.files">
+    <exclude name="**/CVS/**"/>
+    <exclude name="**/SCCS/**"/>
+    <exclude name="**/RCS/**"/>
+    <exclude name="**/rcs/**"/>
+    <exclude name="**/.DS_Store/**"/>
+    <exclude name="**/.svn/**"/>
+    <exclude name="**/vssver.scc/**"/>
+    <exclude name="**/vssver2.scc/**"/>
+  </patternset>
+  <patternset id="compiler.resources">
+    <include name="**/?*.properties"/>
+    <include name="**/?*.xml"/>
+    <include name="**/?*.gif"/>
+    <include name="**/?*.png"/>
+    <include name="**/?*.jpeg"/>
+    <include name="**/?*.jpg"/>
+    <include name="**/?*.html"/>
+    <include name="**/?*.dtd"/>
+    <include name="**/?*.tld"/>
+  </patternset>
+  
+  <!-- JDK definitions -->
+  
+  <property name="jdk.bin.1.5" value="${jdk.home.1.5}/bin"/>
+  <path id="jdk.classpath.1.5">
+    <fileset dir="${jdk.home.1.5}">
+      <include name="jre/lib/charsets.jar"/>
+      <include name="jre/lib/deploy.jar"/>
+      <include name="jre/lib/javaws.jar"/>
+      <include name="jre/lib/jce.jar"/>
+      <include name="jre/lib/jsse.jar"/>
+      <include name="jre/lib/plugin.jar"/>
+      <include name="jre/lib/rt.jar"/>
+      <include name="jre/lib/ext/dnsns.jar"/>
+      <include name="jre/lib/ext/localedata.jar"/>
+      <include name="jre/lib/ext/sunjce_provider.jar"/>
+      <include name="jre/lib/ext/sunpkcs11.jar"/>
+    </fileset>
+  </path>
+  
+  <property name="project.jdk.home" value="${jdk.home.1.5}"/>
+  <property name="project.jdk.bin" value="${jdk.bin.1.5}"/>
+  <property name="project.jdk.classpath" value="jdk.classpath.1.5"/>
+  
+  <!-- Modules -->
+  
+  
+  <!-- Module ehs -->
+  
+  <dirname property="module.ehs.basedir" file="${ant.file}"/>
+  
+  
+  <property name="module.jdk.home.ehs" value="${project.jdk.home}"/>
+  <property name="module.jdk.bin.ehs" value="${project.jdk.bin}"/>
+  <property name="module.jdk.classpath.ehs" value="${project.jdk.classpath}"/>
+  
+  <property name="compiler.args.ehs" value="${compiler.args}"/>
+  
+  <property name="ehs.output.dir" value="${module.ehs.basedir}/classes/production/ehs"/>
+  <property name="ehs.testoutput.dir" value="${module.ehs.basedir}/classes/test/ehs"/>
+  
+  <path id="ehs.module.bootclasspath">
+    <!-- Paths to be included in compilation bootclasspath -->
+  </path>
+  
+  <path id="ehs.module.classpath">
+    <path refid="${module.jdk.classpath.ehs}"/>
+    <pathelement location="${module.ehs.basedir}/lib/sigilent.jar"/>
+    <pathelement location="${module.ehs.basedir}/lib/jaxen-dom4j.jar"/>
+    <pathelement location="${module.ehs.basedir}/lib/jaxen-dom.jar"/>
+    <pathelement location="${module.ehs.basedir}/lib/jaxen-exml.jar"/>
+    <pathelement location="${module.ehs.basedir}/lib/dom.jar"/>
+    <pathelement location="${module.ehs.basedir}/lib/jaxen-full.jar"/>
+    <pathelement location="${module.ehs.basedir}/lib/jdom.jar"/>
+    <pathelement location="${module.ehs.basedir}/lib/jaxp-api.jar"/>
+    <pathelement location="${module.ehs.basedir}/lib/jaxen-jdom.jar"/>
+    <pathelement location="${module.ehs.basedir}/lib/jaxen-core.jar"/>
+    <pathelement location="${module.ehs.basedir}/lib/saxpath.jar"/>
+    <pathelement location="${module.ehs.basedir}/lib/sax.jar"/>
+    <pathelement location="C:/Program Files/JetBrains/IntelliJ IDEA 6.0/lib/forms_rt.jar"/>
+  </path>
+  
+  
+  <patternset id="excluded.from.module.ehs">
+    <patternset refid="ignored.files"/>
+  </patternset>
+  
+  <patternset id="excluded.from.compilation.ehs">
+    <patternset refid="excluded.from.module.ehs"/>
+  </patternset>
+  
+  <path id="ehs.module.sourcepath">
+    <dirset dir="${module.ehs.basedir}">
+      <include name="src"/>
+    </dirset>
+  </path>
+  
+  <path id="ehs.module.test.sourcepath">
+    <dirset dir="${module.ehs.basedir}">
+      <include name="test"/>
+    </dirset>
+  </path>
+  
+  
+  <target name="compile.module.ehs" depends="compile.module.ehs.production,compile.module.ehs.tests" description="Compile module ehs"/>
+  
+  <target name="compile.module.ehs.production" description="Compile module ehs; production classes">
+    <mkdir dir="${ehs.output.dir}"/>
+    <javac destdir="${ehs.output.dir}" debug="${compiler.debug}" nowarn="${compiler.generate.no.warnings}" memorymaximumsize="${compiler.max.memory}" fork="true" executable="${module.jdk.bin.ehs}/javac">
+      <compilerarg line="${compiler.args.ehs}"/>
+      <bootclasspath refid="ehs.module.bootclasspath"/>
+      <classpath refid="ehs.module.classpath"/>
+      <src refid="ehs.module.sourcepath"/>
+      <patternset refid="excluded.from.compilation.ehs"/>
+    </javac>
+    
+    <copy todir="${ehs.output.dir}">
+      <fileset dir="${module.ehs.basedir}/src">
+        <patternset refid="compiler.resources"/>
+        <type type="file"/>
+      </fileset>
+    </copy>
+  </target>
+  
+  <target name="compile.module.ehs.tests" depends="compile.module.ehs.production" description="compile module ehs; test classes" unless="skip.tests">
+    <mkdir dir="${ehs.testoutput.dir}"/>
+    <javac destdir="${ehs.testoutput.dir}" debug="${compiler.debug}" nowarn="${compiler.generate.no.warnings}" memorymaximumsize="${compiler.max.memory}" fork="true" executable="${module.jdk.bin.ehs}/javac">
+      <compilerarg line="${compiler.args.ehs}"/>
+      <classpath refid="ehs.module.classpath"/>
+      <classpath location="${ehs.output.dir}"/>
+      <src refid="ehs.module.test.sourcepath"/>
+      <patternset refid="excluded.from.compilation.ehs"/>
+    </javac>
+    
+    <copy todir="${ehs.testoutput.dir}">
+      <fileset dir="${module.ehs.basedir}/test">
+        <patternset refid="compiler.resources"/>
+        <type type="file"/>
+      </fileset>
+    </copy>
+  </target>
+  
+  <target name="clean.module.ehs" description="cleanup module">
+    <delete dir="${ehs.output.dir}"/>
+    <delete dir="${ehs.testoutput.dir}"/>
+  </target>
+  
+  <target name="init" description="Build initialization">
+    <!-- Perform any build initialization in this target -->
+  </target>
+  
+  <target name="clean" depends="clean.module.ehs" description="cleanup all"/>
+  
+  <target name="all" depends="init, clean, compile.module.ehs" description="build all"/>
+</project>

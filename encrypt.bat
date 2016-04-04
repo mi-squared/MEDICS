@@ -1,0 +1,1 @@
+bin\gpg\gpg -r "%1" --homedir=keystoredir --encrypt "%2"

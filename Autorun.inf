@@ -1,0 +1,5 @@
+[Autorun]
+Open=medics\medics.bat
+Action=Start Medics
+Icon=medics\image\MI2.ico
+Label=MEDICS
